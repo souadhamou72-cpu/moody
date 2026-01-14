@@ -1,0 +1,75 @@
+
+body {
+  margin: 0;
+  background-color: #452f23;
+  font-family: system-ui, sans-serif;
+}
+
+
+.app {
+  min-height: 100vh;
+}
+
+
+.top-section {
+  height: 100vh;               
+  display: flex;
+  flex-direction: column;
+  justify-content: center;       
+  align-items: center;           
+  text-align: center;
+  overflow: hidden;
+}
+
+
+
+.mood-selector {
+  text-align: center;
+  
+}
+
+
+.mood-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.mood-btn {
+  background-color: #4F7942; 
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 16px;
+  cursor: pointer;
+  font-size: 14px;
+  text-transform: capitalize;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.mood-btn:hover {
+  background-color: #6c3d1b;
+  transform: translateY(-2px);
+}
+.top-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background-image: url("/src/assets/download (23).jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  filter: blur(3px);
+  transform: scale(1.1); 
+  z-index: 0;
+}
+.top-section > * {
+  position: relative;
+  z-index: 1;
+}
+
+
+
