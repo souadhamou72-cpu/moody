@@ -10,7 +10,12 @@ function MoodSelector({ setSelectedMood }) {
           <button
             key={mood}
             className="mood-btn"
-            onClick={() => setSelectedMood(mood)}
+            onClick={() => {
+              setSelectedMood(mood);
+
+              
+            }}
+            
           >
             {mood}
           </button>
@@ -18,6 +23,6 @@ function MoodSelector({ setSelectedMood }) {
       </div>
     </div>
   );
+  
 }
-
 export default MoodSelector;

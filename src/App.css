@@ -1,7 +1,7 @@
 
 body {
   margin: 0;
-  background-color: #452f23;
+  background-color: #808080;
   font-family: system-ui, sans-serif;
 }
 
@@ -12,13 +12,13 @@ body {
 
 
 .top-section {
-  height: 100vh;               
+  height: 75vh;               
   display: flex;
   flex-direction: column;
   justify-content: center;       
   align-items: center;           
   text-align: center;
-  overflow: hidden;
+ 
 }
 
 
@@ -69,6 +69,70 @@ body {
 .top-section > * {
   position: relative;
   z-index: 1;
+}
+@media (max-width: 768px) {
+  body {
+    overflow-x: hidden;
+  }
+
+  .container {
+    padding: 1rem;
+  }
+
+  .movies-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .moods {
+    flex-direction: column;
+    gap: 12px;
+  }
+}
+.content-section {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  text-align: center;
+}
+.main-content {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  
+}
+
+.results {
+  max-width: 900px;
+  margin: 0 auto;       
+  padding: 2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+
+.results > * {
+  width: 100%;
+  text-align: center;
+}
+.content-section {
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 2rem 1rem;
+}
+
+iframe {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+.content-section > div {
+  margin-left: auto;
+  margin-right: auto;
 }
 
 
