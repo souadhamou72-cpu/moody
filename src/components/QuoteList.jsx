@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
 function QuoteList({ mood }) {
   const [quotes, setQuotes] = useState([]);
@@ -9,20 +9,17 @@ function QuoteList({ mood }) {
     // TEMP quotes (safe fallback)
     const moodQuotes = {
       happy: [
-        "Happiness is a direction, not a place.",
-        "Smile, it’s contagious."
+        'Happiness is a direction, not a place.',
+        'Smile, it’s contagious.',
       ],
       sad: [
-        "Tears come from the heart and not from the brain.",
-        "It’s okay to feel sad sometimes."
+        'Tears come from the heart and not from the brain.',
+        'It’s okay to feel sad sometimes.',
       ],
-      relaxed: [
-        "Peace comes from within.",
-        "Slow down and breathe."
-      ],
+      relaxed: ['Peace comes from within.', 'Slow down and breathe.'],
       angry: [
-        "For every minute you are angry, you lose sixty seconds of happiness.",
-        "Breathe. Let it go."
+        'For every minute you are angry, you lose sixty seconds of happiness.',
+        'Breathe. Let it go.',
       ],
     };
 

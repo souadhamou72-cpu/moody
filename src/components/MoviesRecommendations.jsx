@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
 const moodToGenre = {
   happy: 35,
@@ -8,7 +8,6 @@ const moodToGenre = {
 };
 
 function MoviesRecommendations({ mood }) {
-  
   const [allMovies, setAllMovies] = useState([]);
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -29,11 +28,10 @@ function MoviesRecommendations({ mood }) {
 
         const data = await response.json();
 
-       
         setAllMovies(data.results);
         setMovies(data.results.slice(0, 6));
       } catch (err) {
-        setError("Could not load movies 😕");
+        setError('Could not load movies 😕');
       } finally {
         setLoading(false);
       }
@@ -42,7 +40,6 @@ function MoviesRecommendations({ mood }) {
     fetchMovies();
   }, [mood]);
 
-  
   function shuffleMovies() {
     if (allMovies.length === 0) return;
 
@@ -57,18 +54,16 @@ function MoviesRecommendations({ mood }) {
     <div>
       <h2>Movies for your mood 🎬</h2>
 
-      <button onClick={shuffleMovies}>
-        Show more movies 🎲
-      </button>
+      <button onClick={shuffleMovies}>Show more movies 🎲</button>
 
-      <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
+      <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
         {movies.map((movie) => (
-          <div key={movie.id} style={{ width: "150px" }}>
+          <div key={movie.id} style={{ width: '150px' }}>
             {movie.poster_path && (
               <img
                 src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`}
                 alt={movie.title}
-                style={{ width: "100%" }}
+                style={{ width: '100%' }}
               />
             )}
             <p>{movie.title}</p>

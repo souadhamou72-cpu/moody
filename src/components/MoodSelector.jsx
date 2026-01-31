@@ -1,5 +1,5 @@
 function MoodSelector({ setSelectedMood }) {
-  const moods = ["happy", "sad", "relaxed", "angry"];
+  const moods = ['happy', 'sad', 'relaxed', 'angry'];
 
   return (
     <div className="mood-selector">
@@ -12,10 +12,7 @@ function MoodSelector({ setSelectedMood }) {
             className="mood-btn"
             onClick={() => {
               setSelectedMood(mood);
-
-              
             }}
-            
           >
             {mood}
           </button>
@@ -23,6 +20,5 @@ function MoodSelector({ setSelectedMood }) {
       </div>
     </div>
   );
-  
 }
 export default MoodSelector;
