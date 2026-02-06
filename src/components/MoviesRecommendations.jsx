@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import MovieCard from "./MovieCard.jsx";
 
 const moodToGenre = {
   happy: 35,
@@ -58,16 +59,17 @@ function MoviesRecommendations({ mood }) {
 
       <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
         {movies.map((movie) => (
-          <div key={movie.id} style={{ width: '150px' }}>
-            {movie.poster_path && (
-              <img
-                src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`}
-                alt={movie.title}
-                style={{ width: '100%' }}
-              />
-            )}
-            <p>{movie.title}</p>
-          </div>
+          // <div key={movie.id} style={{ width: '150px' }}>
+          //   {movie.poster_path && (
+          //     <img
+          //       src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`}
+          //       alt={movie.title}
+          //       style={{ width: '100%' }}
+          //     />
+          //   )}
+          //   <p>{movie.title}</p>
+          // </div>
+            <MovieCard title={movie.title} img={`https://image.tmdb.org/t/p/w200${movie.poster_path}`}/>
         ))}
       </div>
     </div>

@@ -17,31 +17,44 @@ function App() {
   }, [selectedMood]);
 
   return (
-    <div className="app">
-      <div className="top-section">
-        <h1>MoodSpace</h1>
-
-        <MoodSelector
-          setSelectedMood={(mood) => {
-            setSelectedMood(mood);
-            setTimeout(() => {
-              window.scrollTo({
-                top: window.innerHeight,
-                behavior: 'smooth',
-              });
-            }, 100);
-          }}
-        />
+    <div className="relative">
+      <div className="sticky top-0 h-screen flex flex-col items-center justify-center bg-green-400">
+        <h2 className="text-4xl">The First Title</h2>
+        {/*<div className="min-h-screen bg-slate-900 text-slate-100 ">*/}
+        <main className="mx-auto max-w-3xl px-4 py-16">
+          <h1 className="text-3xl font-semibold tracking-tight">Moodspace</h1>
+          <MoodSelector
+            setSelectedMood={(mood) => {
+              setSelectedMood(mood);
+              setTimeout(() => {
+                window.scrollTo({
+                  top: window.innerHeight,
+                  behavior: 'smooth',
+                });
+              }, 100);
+            }}
+          />
+          {selectedMood && (
+            <div>
+              <h2 className="text-4xl">Recommendations</h2>
+              <Recommendations mood={selectedMood} resultsRef={resultsRef} />
+            </div>
+          )}
+        </main>
+        {/*</div>*/}
       </div>
-
-      {selectedMood && (
-        <div className="content-section">
-          <Recommendations mood={selectedMood} resultsRef={resultsRef} />
-          <MusicRecommendations mood={selectedMood} />
-          <QuoteList mood={selectedMood} />
-          <MoviesRecommendations mood={selectedMood} />
-        </div>
-      )}
+      <div className="sticky top-0 h-screen flex flex-col items-center justify-center bg-indigo-600 text-white">
+        <h2 className="text-4xl">Music Recommendation</h2>
+        {selectedMood && <MusicRecommendations mood={selectedMood} />}
+      </div>
+      <div className="sticky top-0 h-screen flex flex-col items-center justify-center bg-purple-600 text-white">
+        <h2 className="text-4xl">Quotes</h2>
+        {selectedMood && <QuoteList mood={selectedMood} />}
+      </div>
+      <div className="sticky top-0 h-screen flex flex-col items-center justify-center bg-neutral-800 text-white">
+        <h2 className="text-4xl">Movies </h2>
+        {selectedMood && <MoviesRecommendations mood={selectedMood} />}
+      </div>
     </div>
   );
 }
