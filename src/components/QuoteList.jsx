@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 function QuoteList({ mood }) {
   const [quotes, setQuotes] = useState([]);
-  const mmoodQuotes = {
+  const moodQuotes = {
     happy: [
       'Happiness is a direction, not a place.',
       'Smile, it’s contagious.',
@@ -19,51 +19,26 @@ function QuoteList({ mood }) {
   };
   useEffect(() => {
     if (!mood) return;
-
-    // TEMP quotes (safe fallback)
-    const moodQuotes = {
-      happy: [
-        'Happiness is a direction, not a place.',
-        'Smile, it’s contagious.',
-      ],
-      sad: [
-        'Tears come from the heart and not from the brain.',
-        'It’s okay to feel sad sometimes.',
-      ],
-      relaxed: ['Peace comes from within.', 'Slow down and breathe.'],
-      angry: [
-        'For every minute you are angry, you lose sixty seconds of happiness.',
-        'Breathe. Let it go.',
-      ],
-    };
-
     setQuotes(moodQuotes[mood] || []);
   }, [mood]);
 
   return (
     <>
-      <div className="relative flex flex-col mt-6 bg-white shadow-sm border border-slate-200 rounded-lg w-96">
-        <div className="p-4">
-          <h5 className="mb-2 text-slate-800 text-xl font-semibold">
-            Website Review Check Text
-          </h5>
-          <p className="text-slate-600 leading-normal font-light">
-            Surround yourself with angels. Life is what you make it, so let’s make it. To be successful you’ve got to work hard, to make history, simple, you’ve got to make it.
-          </p>
-        </div>
-      </div>
-      {mmoodQuotes.happy.map((quote, index) => {
-        <div className="relative flex flex-col mt-6 bg-white shadow-sm border border-slate-200 rounded-lg w-96">
+      {quotes.map((quote, index) => (
+        <div
+          key={`${mood}-${index}`}
+          className="relative flex flex-col mt-6 bg-white shadow-sm border border-slate-200 rounded-lg w-96"
+        >
           <div className="p-4">
             <h5 className="mb-2 text-slate-800 text-xl font-semibold">
-              Website Review Check Text
+              Quote {index + 1}
             </h5>
             <p className="text-slate-600 leading-normal font-light">
-              Surround yourself with angels. Life is what you make it, so let’s make it. To be successful you’ve got to work hard, to make history, simple, you’ve got to make it.
+              {quote}
             </p>
           </div>
         </div>
-      })}
+      ))}
     </>
   );
 }
