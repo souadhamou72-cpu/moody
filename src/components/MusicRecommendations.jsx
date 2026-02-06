@@ -116,24 +116,31 @@ function MusicRecommendations({ mood }) {
   if (!playlist) return <p>Loading music...</p>;
 
   return (
-    <div>
-      <h2>{playlist.title}</h2>
+    <div className="w-full max-w-3xl">
+      <h2 className="text-lg sm:text-xl font-semibold">{playlist.title}</h2>
 
-      <p>Source: {playlist.type === 'spotify' ? 'Spotify' : 'YouTube'}</p>
+      <p className="text-sm sm:text-base opacity-90">
+        Source: {playlist.type === 'spotify' ? 'Spotify' : 'YouTube'}
+      </p>
 
-      {loading && <p>Switching vibe... 🎧</p>}
+      {loading && <p className="text-sm sm:text-base">Switching vibe... 🎧</p>}
 
       {!loading && (
         <iframe
           src={playlist.embed}
           width="100%"
           height="380"
-          style={{ borderRadius: '12px', border: 'none' }}
+          className="mt-3 w-full rounded-xl border-0 h-[260px] sm:h-[320px] md:h-[380px]"
+          style={{ border: 'none' }}
           allow="autoplay; encrypted-media"
         ></iframe>
       )}
 
-      <button onClick={shufflePlaylist} disabled={loading}>
+      <button
+        onClick={shufflePlaylist}
+        disabled={loading}
+        className="mt-4 inline-flex items-center justify-center rounded-lg bg-white/10 px-4 py-2 text-sm sm:text-base font-medium hover:bg-white/20 disabled:opacity-60"
+      >
         {loading ? 'Loading...' : 'Shuffle music 🔀'}
       </button>
     </div>

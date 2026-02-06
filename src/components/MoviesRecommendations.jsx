@@ -67,32 +67,27 @@ function MoviesRecommendations({ mood }) {
   if (error) return <p>{error}</p>;
 
   return (
-    <div>
-      <h2>Movies for your mood 🎬</h2>
+    <div className="w-full">
+      <h2 className="text-lg sm:text-xl font-semibold">Movies for your mood 🎬</h2>
 
-      <button onClick={shuffleMovies}>Show more movies 🎲</button>
+      <button
+        onClick={shuffleMovies}
+        className="mt-3 inline-flex items-center justify-center rounded-lg bg-white/10 px-4 py-2 text-sm sm:text-base font-medium hover:bg-white/20"
+      >
+        Show more movies 🎲
+      </button>
 
-      <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+      <div className="mt-5 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 justify-items-center">
         {movies.map((movie) => (
-          // <div key={movie.id} style={{ width: '150px' }}>
-          //   {movie.poster_path && (
-          //     <img
-          //       src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`}
-          //       alt={movie.title}
-          //       style={{ width: '100%' }}
-          //     />
-          //   )}
-          //   <p>{movie.title}</p>
-          // </div>
-            <MovieCard
-              key={movie.id}
-              title={movie.title}
-              img={
-                movie.poster_path
-                  ? `https://image.tmdb.org/t/p/w200${movie.poster_path}`
-                  : null
-              }
-            />
+          <MovieCard
+            key={movie.id}
+            title={movie.title}
+            img={
+              movie.poster_path
+                ? `https://image.tmdb.org/t/p/w200${movie.poster_path}`
+                : null
+            }
+          />
         ))}
       </div>
     </div>

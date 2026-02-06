@@ -23,23 +23,23 @@ function QuoteList({ mood }) {
   }, [mood]);
 
   return (
-    <>
+    <div className="w-full max-w-3xl flex flex-col gap-4">
       {quotes.map((quote, index) => (
         <div
           key={`${mood}-${index}`}
-          className="relative flex flex-col mt-6 bg-white shadow-sm border border-slate-200 rounded-lg w-96"
+          className="relative flex flex-col bg-white shadow-sm border border-slate-200 rounded-lg w-full max-w-md mx-auto"
         >
           <div className="p-4">
-            <h5 className="mb-2 text-slate-800 text-xl font-semibold">
+            <h5 className="mb-2 text-slate-800 text-lg sm:text-xl font-semibold">
               Quote {index + 1}
             </h5>
-            <p className="text-slate-600 leading-normal font-light">
+            <p className="text-slate-600 leading-normal text-sm sm:text-base font-light">
               {quote}
             </p>
           </div>
         </div>
       ))}
-    </>
+    </div>
   );
 }
 
