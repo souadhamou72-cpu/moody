@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import MoodSelector from '../components/MoodSelector';
 import Recommendations from '../components/Recommendations';
 import MusicRecommendations from '../components/MusicRecommendations';
@@ -21,6 +22,14 @@ function MoodyInsights() {
 
   return (
     <div className="relative text-center">
+      <div className="fixed left-4 top-4 z-[9999]">
+        <Link
+          to="/"
+          className="inline-flex items-center justify-center rounded-full border border-slate-900/30 bg-white/90 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-slate-900 shadow-sm backdrop-blur transition hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-900"
+        >
+          Back to Landing
+        </Link>
+      </div>
       <section className="sticky top-0 min-h-[100svh] flex flex-col items-center justify-center bg-green-400">
         <div className="w-full max-w-4xl px-4 sm:px-6">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold">
