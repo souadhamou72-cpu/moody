@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { toast } from 'sonner';
+import useScrollLockNotice from '../hooks/useScrollLockNotice';
 import MoodSelector from '../components/MoodSelector';
 import Recommendations from '../components/Recommendations';
 import MusicRecommendations from '../components/MusicRecommendations';
@@ -10,8 +11,6 @@ import MoviesRecommendations from '../components/MoviesRecommendations';
 function MoodyInsights() {
   const [selectedMood, setSelectedMood] = useState(null);
   const resultsRef = useRef(null);
-  const originalBodyStyle = useRef(null);
-  const lastToastAt = useRef(0);
 
   useEffect(() => {
     document.title = 'Moody Insights';
@@ -23,83 +22,15 @@ function MoodyInsights() {
     }
   }, [selectedMood]);
 
-  useEffect(() => {
-    if (!originalBodyStyle.current) {
-      originalBodyStyle.current = {
-        overflow: document.body.style.overflow,
-        touchAction: document.body.style.touchAction,
-      };
-    }
-
-    if (!selectedMood) {
-      document.body.style.overflow = 'hidden';
-      document.body.style.touchAction = 'none';
-    } else {
-      document.body.style.overflow =
-        originalBodyStyle.current?.overflow ?? '';
-      document.body.style.touchAction =
-        originalBodyStyle.current?.touchAction ?? '';
-    }
-
-    return () => {
-      if (originalBodyStyle.current) {
-        document.body.style.overflow = originalBodyStyle.current.overflow;
-        document.body.style.touchAction =
-          originalBodyStyle.current.touchAction;
-      }
-    };
-  }, [selectedMood]);
-
-  useEffect(() => {
-    if (selectedMood) {
-      return undefined;
-    }
-
-    const showLockToast = () => {
-      const now = Date.now();
-      if (now - lastToastAt.current < 1500) return;
-      lastToastAt.current = now;
+  useScrollLockNotice({
+    enabled: !selectedMood,
+    onAttempt: () =>
       toast('Select a mood to unlock insights', {
         id: 'mood-lock',
         duration: 2000,
-      });
-    };
-
-    const handleWheel = (event) => {
-      if (event.cancelable) event.preventDefault();
-      showLockToast();
-    };
-
-    const handleTouchMove = (event) => {
-      if (event.cancelable) event.preventDefault();
-      showLockToast();
-    };
-
-    const handleKeyDown = (event) => {
-      const scrollKeys = [
-        'ArrowDown',
-        'ArrowUp',
-        'PageDown',
-        'PageUp',
-        'Home',
-        'End',
-        'Space',
-      ];
-      if (!scrollKeys.includes(event.code)) return;
-      if (event.cancelable) event.preventDefault();
-      showLockToast();
-    };
-
-    window.addEventListener('wheel', handleWheel, { passive: false });
-    window.addEventListener('touchmove', handleTouchMove, { passive: false });
-    window.addEventListener('keydown', handleKeyDown, { passive: false });
-
-    return () => {
-      window.removeEventListener('wheel', handleWheel);
-      window.removeEventListener('touchmove', handleTouchMove);
-      window.removeEventListener('keydown', handleKeyDown);
-    };
-  }, [selectedMood]);
+      }),
+    throttleMs: 1500,
+  });
 
   return (
     <div className="relative text-center">
