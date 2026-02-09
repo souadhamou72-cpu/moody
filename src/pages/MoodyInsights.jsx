@@ -25,7 +25,7 @@ function MoodyInsights() {
   useScrollLockNotice({
     enabled: !selectedMood,
     onAttempt: () =>
-      toast('Select a mood to unlock insights', {
+      toast.warning('Select a mood to unlock insights', {
         id: 'mood-lock',
         duration: 2000,
       }),
