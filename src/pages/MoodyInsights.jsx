@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
+import { toast } from 'sonner';
 import MoodSelector from '../components/MoodSelector';
 import Recommendations from '../components/Recommendations';
 import MusicRecommendations from '../components/MusicRecommendations';
@@ -9,6 +10,8 @@ import MoviesRecommendations from '../components/MoviesRecommendations';
 function MoodyInsights() {
   const [selectedMood, setSelectedMood] = useState(null);
   const resultsRef = useRef(null);
+  const originalBodyStyle = useRef(null);
+  const lastToastAt = useRef(0);
 
   useEffect(() => {
     document.title = 'Moody Insights';
@@ -18,6 +21,84 @@ function MoodyInsights() {
     if (selectedMood && resultsRef.current) {
       resultsRef.current.scrollIntoView({ behavior: 'smooth' });
     }
+  }, [selectedMood]);
+
+  useEffect(() => {
+    if (!originalBodyStyle.current) {
+      originalBodyStyle.current = {
+        overflow: document.body.style.overflow,
+        touchAction: document.body.style.touchAction,
+      };
+    }
+
+    if (!selectedMood) {
+      document.body.style.overflow = 'hidden';
+      document.body.style.touchAction = 'none';
+    } else {
+      document.body.style.overflow =
+        originalBodyStyle.current?.overflow ?? '';
+      document.body.style.touchAction =
+        originalBodyStyle.current?.touchAction ?? '';
+    }
+
+    return () => {
+      if (originalBodyStyle.current) {
+        document.body.style.overflow = originalBodyStyle.current.overflow;
+        document.body.style.touchAction =
+          originalBodyStyle.current.touchAction;
+      }
+    };
+  }, [selectedMood]);
+
+  useEffect(() => {
+    if (selectedMood) {
+      return undefined;
+    }
+
+    const showLockToast = () => {
+      const now = Date.now();
+      if (now - lastToastAt.current < 1500) return;
+      lastToastAt.current = now;
+      toast('Select a mood to unlock insights', {
+        id: 'mood-lock',
+        duration: 2000,
+      });
+    };
+
+    const handleWheel = (event) => {
+      if (event.cancelable) event.preventDefault();
+      showLockToast();
+    };
+
+    const handleTouchMove = (event) => {
+      if (event.cancelable) event.preventDefault();
+      showLockToast();
+    };
+
+    const handleKeyDown = (event) => {
+      const scrollKeys = [
+        'ArrowDown',
+        'ArrowUp',
+        'PageDown',
+        'PageUp',
+        'Home',
+        'End',
+        'Space',
+      ];
+      if (!scrollKeys.includes(event.code)) return;
+      if (event.cancelable) event.preventDefault();
+      showLockToast();
+    };
+
+    window.addEventListener('wheel', handleWheel, { passive: false });
+    window.addEventListener('touchmove', handleTouchMove, { passive: false });
+    window.addEventListener('keydown', handleKeyDown, { passive: false });
+
+    return () => {
+      window.removeEventListener('wheel', handleWheel);
+      window.removeEventListener('touchmove', handleTouchMove);
+      window.removeEventListener('keydown', handleKeyDown);
+    };
   }, [selectedMood]);
 
   return (
@@ -32,10 +113,6 @@ function MoodyInsights() {
       </div>
       <section className="sticky top-0 min-h-[100svh] flex flex-col items-center justify-center bg-green-400">
         <div className="w-full max-w-4xl px-4 sm:px-6">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold">
-            The First Title
-          </h2>
-          {/*<div className="min-h-screen bg-slate-900 text-slate-100 ">*/}
           <main className="mx-auto max-w-3xl px-0 sm:px-2 py-10 sm:py-16">
             <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight">
               Moodspace
