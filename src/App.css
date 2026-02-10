@@ -1,139 +1,129 @@
+@import 'tailwindcss';
 
-body {
-  margin: 0;
-  background-color: #808080;
-  font-family: system-ui, sans-serif;
-}
+/*body {*/
+/*  margin: 0;*/
+/*  background-color: #808080;*/
+/*  font-family: system-ui, sans-serif;*/
+/*}*/
 
+/*.app {*/
+/*  min-height: 100vh;*/
+/*}*/
 
-.app {
-  min-height: 100vh;
-}
+/*.top-section {*/
+/*  height: 75vh;*/
+/*  display: flex;*/
+/*  flex-direction: column;*/
+/*  justify-content: center;*/
+/*  align-items: center;*/
+/*  text-align: center;*/
+/*}*/
 
+/*.mood-selector {*/
+/*  text-align: center;*/
+/*}*/
 
-.top-section {
-  height: 75vh;               
-  display: flex;
-  flex-direction: column;
-  justify-content: center;       
-  align-items: center;           
-  text-align: center;
- 
-}
+/*.mood-buttons {*/
+/*  display: flex;*/
+/*  justify-content: center;*/
+/*  gap: 12px;*/
+/*  flex-wrap: wrap;*/
+/*}*/
 
+/*.mood-btn {*/
+/*  background-color: #4f7942;*/
+/*  color: #ffffff;*/
+/*  border: none;*/
+/*  border-radius: 8px;*/
+/*  padding: 10px 16px;*/
+/*  cursor: pointer;*/
+/*  font-size: 14px;*/
+/*  text-transform: capitalize;*/
+/*  transition:*/
+/*    transform 0.2s ease,*/
+/*    background-color 0.2s ease;*/
+/*}*/
 
+/*.mood-btn:hover {*/
+/*  background-color: #6c3d1b;*/
+/*  transform: translateY(-2px);*/
+/*}*/
+/*.top-section::before {*/
+/*  content: '';*/
+/*  position: absolute;*/
+/*  inset: 0;*/
 
-.mood-selector {
-  text-align: center;
-  
-}
+/*  background-image: url('/src/assets/download (23).jpg');*/
+/*  background-size: cover;*/
+/*  background-position: center;*/
+/*  background-repeat: no-repeat;*/
 
+/*  filter: blur(3px);*/
+/*  transform: scale(1.1);*/
+/*  z-index: 0;*/
+/*}*/
+/*.top-section > * {*/
+/*  position: relative;*/
+/*  z-index: 1;*/
+/*}*/
+/*@media (max-width: 768px) {*/
+/*  body {*/
+/*    overflow-x: hidden;*/
+/*  }*/
 
-.mood-buttons {
-  display: flex;
-  justify-content: center;
-  gap: 12px;
-  flex-wrap: wrap;
-}
+/*  .container {*/
+/*    padding: 1rem;*/
+/*  }*/
 
-.mood-btn {
-  background-color: #4F7942; 
-  color: #ffffff;
-  border: none;
-  border-radius: 8px;
-  padding: 10px 16px;
-  cursor: pointer;
-  font-size: 14px;
-  text-transform: capitalize;
-  transition: transform 0.2s ease, background-color 0.2s ease;
-}
+/*  .movies-grid {*/
+/*    grid-template-columns: 1fr;*/
+/*  }*/
 
-.mood-btn:hover {
-  background-color: #6c3d1b;
-  transform: translateY(-2px);
-}
-.top-section::before {
-  content: "";
-  position: absolute;
-  inset: 0;
+/*  .moods {*/
+/*    flex-direction: column;*/
+/*    gap: 12px;*/
+/*  }*/
+/*}*/
+/*.content-section {*/
+/*  max-width: 900px;*/
+/*  margin: 0 auto;*/
+/*  padding: 2rem 1rem;*/
+/*  text-align: center;*/
+/*}*/
+/*.main-content {*/
+/*  max-width: 1100px;*/
+/*  margin: 0 auto;*/
+/*  padding: 2rem 1rem;*/
+/*}*/
 
-  background-image: url("/src/assets/download (23).jpg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+/*.results {*/
+/*  max-width: 900px;*/
+/*  margin: 0 auto;*/
+/*  padding: 2rem 1rem;*/
+/*  display: flex;*/
+/*  flex-direction: column;*/
+/*  align-items: center;*/
+/*  gap: 2rem;*/
+/*}*/
 
-  filter: blur(3px);
-  transform: scale(1.1); 
-  z-index: 0;
-}
-.top-section > * {
-  position: relative;
-  z-index: 1;
-}
-@media (max-width: 768px) {
-  body {
-    overflow-x: hidden;
-  }
+/*.results > * {*/
+/*  width: 100%;*/
+/*  text-align: center;*/
+/*}*/
+/*.content-section {*/
+/*  max-width: 900px;*/
+/*  margin-left: auto;*/
+/*  margin-right: auto;*/
+/*  padding: 2rem 1rem;*/
+/*}*/
 
-  .container {
-    padding: 1rem;
-  }
+/*iframe {*/
+/*  display: block;*/
+/*  margin-left: auto;*/
+/*  margin-right: auto;*/
+/*}*/
 
-  .movies-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .moods {
-    flex-direction: column;
-    gap: 12px;
-  }
-}
-.content-section {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 2rem 1rem;
-  text-align: center;
-}
-.main-content {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 2rem 1rem;
-  
-}
-
-.results {
-  max-width: 900px;
-  margin: 0 auto;       
-  padding: 2rem 1rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2rem;
-}
-
-
-.results > * {
-  width: 100%;
-  text-align: center;
-}
-.content-section {
-  max-width: 900px;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 2rem 1rem;
-}
-
-iframe {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-
-.content-section > div {
-  margin-left: auto;
-  margin-right: auto;
-}
-
-
-
+/*.content-section > div {*/
+/*  margin-left: auto;*/
+/*  margin-right: auto;*/
+/*}*/
